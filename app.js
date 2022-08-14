@@ -5,19 +5,18 @@ function Employee(id, name, department, level, image) {
 		(this.level = level),
 		(this.image = image),
 		(this.salary = salaryCalc(level));
-}
+	function salaryCalc(level) {
+		switch (level) {
+			case "Junior":
+				return Math.floor(Math.random() * 501) + 500;
+			// Math.floor(Math.random() * (max - min + 1) ) + min;
 
-function salaryCalc(level) {
-	switch (level) {
-		case "Junior":
-			return Math.floor(Math.random() * 501) + 500;
-		// Math.floor(Math.random() * (max - min + 1) ) + min;
+			case "Mid-Senior":
+				return Math.floor(Math.random() * 501) + 1000;
 
-		case "Mid-Senior":
-			return Math.floor(Math.random() * 501) + 1000;
-
-		case "Senior":
-			return Math.floor(Math.random() * 501) + 1500;
+			case "Senior":
+				return Math.floor(Math.random() * 501) + 1500;
+		}
 	}
 }
 
