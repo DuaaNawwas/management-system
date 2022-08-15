@@ -70,16 +70,62 @@ let employee6 = new Employee(
 	"https://randomuser.me/api/portraits/men/9.jpg"
 );
 
+const table = document.createElement("table");
+const tHead = document.createElement("thead");
+const tBody = document.createElement("tbody");
+
+let employees = [
+	employee0,
+	employee1,
+	employee2,
+	employee3,
+	employee4,
+	employee5,
+	employee6,
+];
+let categories = ["Employee ID", "Full Name", "Department", "Level", "Salary"];
+function tHeadGenerator() {
+	const row = document.createElement("tr");
+
+	for (let x = 0; x < 5; x++) {
+		const cell = document.createElement("th");
+		const cellContent = document.createTextNode(
+			// Object.keys(employee0)[x].toUpperCase()
+			categories[x]
+		);
+		cell.appendChild(cellContent);
+		row.appendChild(cell);
+	}
+
+	tHead.appendChild(row);
+	table.appendChild(tHead);
+}
+
+function tBodyGenerator() {
+	for (let x = 0; x <= 6; x++) {
+		const row = document.createElement("tr");
+
+		for (let j = 0; j < 6; j++) {
+			const cell = document.createElement("td");
+			if (j == 4) {
+				continue;
+			}
+			let person = Object.values(employees[x]);
+			const cellContent = document.createTextNode(person[j]);
+
+			cell.appendChild(cellContent);
+			row.appendChild(cell);
+		}
+		tBody.appendChild(row);
+	}
+
+	table.appendChild(tBody);
+}
+
 function render() {
-	let employees = [
-		employee0,
-		employee1,
-		employee2,
-		employee3,
-		employee4,
-		employee5,
-		employee6,
-	];
+	tHeadGenerator();
+	tBodyGenerator();
+	document.getElementById("main").appendChild(table);
 	for (let i = 0; i <= 6; i++) {
 		console.log(
 			"Employee Name: " +
@@ -91,4 +137,3 @@ function render() {
 }
 
 render();
-// console.log(employee0);
