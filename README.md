@@ -1,5 +1,9 @@
 # management-system
 
+### Webpage
+
+[Live URL](https://duaanawwas.github.io/management-system/)
+
 ### Task1
 
 14/8/2022
@@ -11,6 +15,8 @@ I also added a header and a footer to the page.
 15/8/2022
 I made a function that adds a table with the employees information to the html page and styles the table
 
-### Webpage
+### Task3
 
-[Live URL](https://duaanawwas.github.io/management-system/)
+16/8/2022
+I changed the table to individual cards for each employee, added a form where you can add new employees cards and save them in the local storage in an array that already have the exxisting employees.
+I also added simple styles to the page.

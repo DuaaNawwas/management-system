@@ -20,6 +20,68 @@ function Employee(id, name, department, level, image) {
 	}
 }
 
+// input new employees from form, add new cards for them and add them to the local storage next to the existing employees
+
+let form = document.getElementById("form");
+let allEmployees = [];
+form.addEventListener("submit", function (e) {
+	e.preventDefault();
+	let employeeId = document.getElementById("id").value;
+	let fullName = document.getElementById("name").value;
+	let department = document.getElementById("department").value;
+	let level = document.getElementById("level").value;
+	let image = document.getElementById("image").value;
+	let newEmployee = new Employee(
+		employeeId,
+		fullName,
+		department,
+		level,
+		image
+	);
+	addCard(newEmployee);
+	allEmployees.push(newEmployee);
+	localStorage.setItem("employees", JSON.stringify(allEmployees));
+	// let nnn = JSON.parse(localStorage.getItem("employees"));
+	// console.log(nnn[0].fullName);
+	// console.log(newEmployee);
+});
+
+let cardContainer = document.getElementById("card-container");
+
+function addCard(newEmployee) {
+	let card = document.createElement("div");
+	cardContainer.append(card);
+
+	let img = document.createElement("img");
+	img.setAttribute("src", newEmployee.image);
+	card.append(img);
+
+	let cardText = document.createElement("div");
+	card.append(cardText);
+
+	let nameH2 = document.createElement("h2");
+	nameH2.textContent = newEmployee.fullName;
+	cardText.append(nameH2);
+
+	let p = document.createElement("p");
+	p.textContent = "Id: " + newEmployee.employeeID;
+	cardText.append(p);
+
+	let p2 = document.createElement("p");
+	p2.textContent = "Department: " + newEmployee.department;
+	cardText.append(p2);
+
+	let p3 = document.createElement("p");
+	p3.textContent = "Level: " + newEmployee.level;
+	cardText.append(p3);
+
+	let p4 = document.createElement("p");
+	p4.textContent = "Salary: " + newEmployee.salary + " JOD";
+	cardText.append(p4);
+}
+
+// old employees information -- added as cards and in local storage
+
 let employee0 = new Employee(
 	1000,
 	"Ghazi Samer",
@@ -70,11 +132,7 @@ let employee6 = new Employee(
 	"https://randomuser.me/api/portraits/men/9.jpg"
 );
 
-const table = document.createElement("table");
-const tHead = document.createElement("thead");
-const tBody = document.createElement("tbody");
-
-let employees = [
+let oldEmployees = [
 	employee0,
 	employee1,
 	employee2,
@@ -83,57 +141,69 @@ let employees = [
 	employee5,
 	employee6,
 ];
-let categories = ["Employee ID", "Full Name", "Department", "Level", "Salary"];
-function tHeadGenerator() {
-	const row = document.createElement("tr");
 
-	for (let x = 0; x < 5; x++) {
-		const cell = document.createElement("th");
-		const cellContent = document.createTextNode(
-			// Object.keys(employee0)[x].toUpperCase()
-			categories[x]
-		);
-		cell.appendChild(cellContent);
-		row.appendChild(cell);
-	}
-
-	tHead.appendChild(row);
-	table.appendChild(tHead);
+for (let i = 0; i < oldEmployees.length; i++) {
+	addCard(oldEmployees[i]);
+	allEmployees.push(oldEmployees[i]);
+	localStorage.setItem("employees", JSON.stringify(allEmployees));
 }
 
-function tBodyGenerator() {
-	for (let x = 0; x <= 6; x++) {
-		const row = document.createElement("tr");
+// const table = document.createElement("table");
+// const tHead = document.createElement("thead");
+// const tBody = document.createElement("tbody");
 
-		for (let j = 0; j < 6; j++) {
-			const cell = document.createElement("td");
-			if (j == 4) {
-				continue;
-			}
-			let person = Object.values(employees[x]);
-			const cellContent = document.createTextNode(person[j]);
+// oldEmployees.forEach(addCard());
+// let categories = ["Employee ID", "Full Name", "Department", "Level", "Salary"];
+// function tHeadGenerator() {
+// 	const row = document.createElement("tr");
 
-			cell.appendChild(cellContent);
-			row.appendChild(cell);
-		}
-		tBody.appendChild(row);
-	}
+// 	for (let x = 0; x < 5; x++) {
+// 		const cell = document.createElement("th");
+// 		const cellContent = document.createTextNode(
+// 			// Object.keys(employee0)[x].toUpperCase()
+// 			categories[x]
+// 		);
+// 		cell.appendChild(cellContent);
+// 		row.appendChild(cell);
+// 	}
 
-	table.appendChild(tBody);
-}
+// 	tHead.appendChild(row);
+// 	table.appendChild(tHead);
+// }
 
-function render() {
-	tHeadGenerator();
-	tBodyGenerator();
-	document.getElementById("main").appendChild(table);
-	for (let i = 0; i <= 6; i++) {
-		console.log(
-			"Employee Name: " +
-				employees[i].fullName +
-				", Salary: " +
-				employees[i].salary
-		);
-	}
-}
+// function tBodyGenerator() {
+// 	for (let x = 0; x <= 6; x++) {
+// 		const row = document.createElement("tr");
 
-render();
+// 		for (let j = 0; j < 6; j++) {
+// 			const cell = document.createElement("td");
+// 			if (j == 4) {
+// 				continue;
+// 			}
+// 			let person = Object.values(employees[x]);
+// 			const cellContent = document.createTextNode(person[j]);
+
+// 			cell.appendChild(cellContent);
+// 			row.appendChild(cell);
+// 		}
+// 		tBody.appendChild(row);
+// 	}
+
+// 	table.appendChild(tBody);
+// }
+
+// function render() {
+// 	tHeadGenerator();
+// 	tBodyGenerator();
+// 	document.getElementById("main").appendChild(table);
+// 	for (let i = 0; i <= 6; i++) {
+// 		console.log(
+// 			"Employee Name: " +
+// 				employees[i].fullName +
+// 				", Salary: " +
+// 				employees[i].salary
+// 		);
+// 	}
+// }
+
+// render();
