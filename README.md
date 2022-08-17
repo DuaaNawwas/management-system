@@ -18,5 +18,8 @@ I made a function that adds a table with the employees information to the html p
 ### Task3
 
 16/8/2022
-I changed the table to individual cards for each employee, added a form where you can add new employees cards and save them in the local storage in an array that already have the exxisting employees.
+I changed the table to individual cards for each employee, added a form where you can add new employees cards and save them in the local storage in an array.
 I also added simple styles to the page.
+
+17/8/2022
+Fixed the local storage so you can refresh the page and not lose the cards you added

@@ -20,10 +20,11 @@ function Employee(id, name, department, level, image) {
 	}
 }
 
-// input new employees from form, add new cards for them and add them to the local storage next to the existing employees
+// input new employees from form, add new cards for them and add them to the local storage
 
 let form = document.getElementById("form");
 let allEmployees = [];
+
 form.addEventListener("submit", function (e) {
 	e.preventDefault();
 	let employeeId = document.getElementById("id").value;
@@ -38,12 +39,16 @@ form.addEventListener("submit", function (e) {
 		level,
 		image
 	);
-	addCard(newEmployee);
+
 	allEmployees.push(newEmployee);
-	localStorage.setItem("employees", JSON.stringify(allEmployees));
+	saveToLocal();
+	addCard(newEmployee);
+	// localStorage.setItem("employees", JSON.stringify(allEmployees));
 	// let nnn = JSON.parse(localStorage.getItem("employees"));
 	// console.log(nnn[0].fullName);
 	// console.log(newEmployee);
+
+	document.forms[0].reset();
 });
 
 let cardContainer = document.getElementById("card-container");
@@ -144,9 +149,26 @@ let oldEmployees = [
 
 for (let i = 0; i < oldEmployees.length; i++) {
 	addCard(oldEmployees[i]);
-	allEmployees.push(oldEmployees[i]);
-	localStorage.setItem("employees", JSON.stringify(allEmployees));
+	// allEmployees.push(oldEmployees[i]);
+	// localStorage.setItem("employees", JSON.stringify(allEmployees));
 }
+
+function saveToLocal() {
+	let strArr = JSON.stringify(allEmployees);
+	localStorage.setItem("employees", strArr);
+}
+
+function getFromLocal() {
+	let jsonArr = localStorage.getItem("employees");
+	let arr = JSON.parse(jsonArr);
+	allEmployees = arr;
+	arr.forEach((ele) => {
+		addCard(ele);
+	});
+	console.log(arr);
+}
+
+getFromLocal();
 
 // const table = document.createElement("table");
 // const tHead = document.createElement("thead");
