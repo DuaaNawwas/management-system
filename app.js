@@ -168,8 +168,9 @@ function getFromLocal() {
 	console.log(arr);
 }
 
-getFromLocal();
-
+if (localStorage.getItem("employees") != null) {
+	getFromLocal();
+}
 // const table = document.createElement("table");
 // const tHead = document.createElement("thead");
 // const tBody = document.createElement("tbody");

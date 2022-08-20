@@ -23,3 +23,4 @@ I also added simple styles to the page.
 
 17/8/2022
 Fixed the local storage so you can refresh the page and not lose the cards you added
+++ I can now clear the local storage without issues
